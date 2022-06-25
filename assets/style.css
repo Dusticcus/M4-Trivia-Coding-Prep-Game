@@ -215,9 +215,15 @@ nav {
 
 /* Basically a footer, but will turn green when correct and red when incorrect */
 #questionRightOrWrong {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     margin: 0;
     padding: 0;
     text-align: center;
     background-color: white;
+    transition: background-color 1s linear;
 }
+
+
