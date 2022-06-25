@@ -148,10 +148,20 @@ html,
 body {
     margin: 0px;
     height: 100%;
+    overflow: hidden;
 }
 
+button:nth-child(even) {
+    background-color: lightskyblue;
+}
+
+
+
+
 main {
+    margin: 0;
     padding: 0;
+    height: 100%;
 }
 
 /* NAVBAR STYLES */
@@ -170,6 +180,7 @@ nav {
 .navLinks {
     display: flex;
     padding-left: 0;
+    margin: 0;
 }
 
 .navItems {
@@ -178,23 +189,35 @@ nav {
 
 /* QUESTION SECTION STYLES */
 #questionContainer {
-    position: relative;
-    background: red;
-    height: 94.8vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    height: 100%;
+    width: 100vw;
     margin: 0;
     padding: 0;
 
     overflow: hidden;
 }
 
+/* Where the text and buttons for the game go */
+#gameArea {
+    text-align: center;
+    display: flex; 
+    flex-direction: column;
+}
+
+
+
+
+
+/* Basically a footer, but will turn green when correct and red when incorrect */
 #questionRightOrWrong {
-    position: absolute;
-    bottom: 0;
     width: 100%;
     margin: 0;
     padding: 0;
-
     text-align: center;
-
-    background-color: green;
+    background-color: white;
 }

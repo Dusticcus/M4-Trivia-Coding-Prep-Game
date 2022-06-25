@@ -13,55 +13,31 @@
 
 <body>
     <!-- NAVBAR BEGIN -->
-    <nav class="navbar">
-        <ul class="navLinks highScores">
-            <li class="navItems">VIEW HIGH SCORES</li>
-        </ul>
-        <ul class="navLinks countdown">
-            <li class="navItems">COUNTDOWN</li>
-        </ul>
-    </nav>
+
     <!-- NAVBAR END -->
     <!-- MAIN BEGIN -->
     <main>
-<section id="questionContainer">
-    <article><p>SOME STUFF</p></article>
+        <section id="questionContainer">
+            <nav class="navbar">
+                <ul class="navLinks highScores">
+                    <li class="navItems">VIEW HIGH SCORES</li>
+                </ul>
+                <ul class="navLinks">
+                    <li id="countdown" class="navItems">COUNTDOWN</li>
+                </ul>
+            </nav>
+            <article id="gameArea">
+                <h1>Coding Quiz Challenge</h1>
+                <p>Try to answer the following code-related questions within the time limit.<br>Keep in mind that
+                    incorrect answers will penalize your score/time by ten seconds!</p>
+                <button id="startGame">Start Game</button>
+            </article>
 
-
-
-
-
-
-    <section id="questionRightOrWrong">
-        <p>Right! or Wrong! would appear here.</p>
-    </section>
-</section>
-
-
-
-
-
-
-
-
-
+            <section id="questionRightOrWrong">
+            </section>
+        </section>
     </main>
     <!-- MAIN END -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <!-- --------------------SCRIPTS-------------------- -->
     <script src="./assets/scripts.js"></script>
