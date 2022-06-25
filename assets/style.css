@@ -155,9 +155,6 @@ button:nth-child(even) {
     background-color: lightskyblue;
 }
 
-
-
-
 main {
     margin: 0;
     padding: 0;
@@ -183,10 +180,6 @@ nav {
     margin: 0;
 }
 
-.navItems {
-
-}
-
 /* QUESTION SECTION STYLES */
 #questionContainer {
     display: flex;
@@ -208,10 +201,6 @@ nav {
     display: flex; 
     flex-direction: column;
 }
-
-
-
-
 
 /* Basically a footer, but will turn green when correct and red when incorrect */
 #questionRightOrWrong {

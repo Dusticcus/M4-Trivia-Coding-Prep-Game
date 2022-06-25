@@ -1,14 +1,41 @@
-var timerNumber = 100000;
+var timerNumber = 90;
 var newNumber;
+var countdown = document.getElementById("countdown");
 
 var backgroundTimer = 2;
 var backgroundTimerReduced = backgroundTimer;
+var questionRightOrWrongArea = document.getElementById("questionRightOrWrong");
 
-var countdown = document.getElementById("countdown");
+var score = 0;
+var collectiveScore = score;
+var score = document.getElementById("score");
+
 var gameArea = document.getElementById("gameArea");
-var questionRightOrWrongArea = document.getElementById("questionRightOrWrong")
 
 
+var theQuestion = 1;
+
+
+
+// LOCAL STORAGE -------------------
+
+
+if (localStorage.getItem("beenHereBefore") === null) {
+    localStorage.setItem('beenHereBefore', 'yes');
+    var genHighScores = ["Dusty : 50", "Rusty : 40", "Krusty : 30"];
+    localStorage.setItem('highScoreArray', JSON.stringify(genHighScores));
+
+}
+
+if (localStorage.getItem("beenHereBefore")) {
+    var highScoreArray = JSON.parse(localStorage.getItem('highScoreArray'));
+}
+// ---------------------------------------------
+
+
+
+
+// QUESTIONS------------
 var question1 = {
     question: "aaaaaaaaaaaaaaaaaaaaaa",
     answerOne: ["a", "b", "c", "d"],
@@ -32,14 +59,30 @@ var question4 = {
     answerOne: ["a", "b", "c", "d"],
     correctAnswer: "d"
 }
-
-var theQuestion = 1;
-
-
+// ---------------------
 
 // Start Game
 var startGame = document.getElementById("startGame");
 startGame.addEventListener("click", startGameEXE);
+
+// click event handler for high scores
+function writeHighScores() {
+    gameArea.innerHTML = '';
+    console.log(highScoreArray);
+
+    for (let i = 0; i < highScoreArray.length; i++) {
+
+        gameArea.insertAdjacentHTML('beforeend', "<p>" + highScoreArray[i] + "</p>");
+    }
+
+
+
+
+    ;
+    alert("game");
+}
+var viewHighScores = document.getElementById("viewHighScores");
+viewHighScores.addEventListener("click", writeHighScores);
 
 function writeQuestions() {
 
@@ -87,7 +130,7 @@ function rightOrWrong() {
 
             gameArea.innerHTML = "";
             questionRightOrWrongArea.style.backgroundColor = "white"
-            questionRightOrWrongArea.innerHTML = "";
+            questionRightOrWrongArea.innerHTML = collectiveScore;;
             backgroundTimerReduced = 2;
             writeQuestions();
         }
@@ -96,17 +139,16 @@ function rightOrWrong() {
         clearInterval(backgroundInterval);
     }
 
-
     if (checkSelection == theQuestion.correctAnswer) {
         // alert("!!!!!yas!!!!");
         // console.log(typeof this.textContent);
         // theQuestion = question2;
 
         questionRightOrWrongArea.style.backgroundColor = "green";
-        questionRightOrWrongArea.insertAdjacentHTML('beforeend', "CORRECT!");
-
+        console.log("SCORE: " + collectiveScore);
         // console.log(theQuestion);
-
+        timerNumber += 5;
+        collectiveScore += 10;
         rightWrongBackgroundInterval();
 
     } else {
@@ -115,16 +157,14 @@ function rightOrWrong() {
         // theQuestion = question2;
 
         questionRightOrWrongArea.style.backgroundColor = "red";
-        questionRightOrWrongArea.insertAdjacentHTML('beforeend', "Incorrect!");
+        timerNumber -= 10;
+        collectiveScore -= 5;
+        console.log("SCORE: " + collectiveScore);
 
         rightWrongBackgroundInterval();
     }
 
 }
-
-
-
-
 
 function startGameEXE() {
     // alert("start game");
@@ -142,7 +182,7 @@ function startGameEXE() {
         console.log(timerNumber);
         console.log(newNumber);
         // ✅ Change (replace) the text of the element
-        countdown.innerHTML = newNumber;
+        countdown.innerHTML = "Time|" + newNumber;
         if (newNumber == 0) {
             console.log("NUMBER: " + timerNumber);
             stopTimer();
