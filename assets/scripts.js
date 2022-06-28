@@ -41,9 +41,9 @@ if (localStorage.getItem("beenHereBefore") === null) {
 
 // QUESTIONS------------
 var question1 = {
-    question: "Who do you think you are?",
-    answerOne: ["a", "b", "c", "d"],
-    correctAnswer: "a"
+    question: "Which of these will provide the object keys and values?",
+    answerOne: ["Object.entries()", "Object.values()", "Object.keys()", "alert(obj)"],
+    correctAnswer: "Object.entries()"
 }
 
 var question2 = {
@@ -68,7 +68,7 @@ var question4 = {
 // Go back to landing page
 function backtoStart() {
     timerNumber = 0;
-
+    score = 0;
     questionRightOrWrongArea.innerHTML = "";
     gameArea.innerHTML = "<h1>Coding Quiz Challenge</h1><p>Try to answer the following code-related questions within the time limit.<br>Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p><br><button id='startGame1'>Start Game</button>";
     var startGame1 = document.getElementById("startGame1");
@@ -78,13 +78,15 @@ function backtoStart() {
 // click event handler for high scores
 function writeHighScores() {
     gameArea.innerHTML = '';
-    timerNumber = 0;
+    timerNumber = 30;
+    theQuestion = 1;
+    score = 0;
     // highScoreArray = highScoreArray.sort();
     console.log(highScoreArray);
     for (let i = 0; i < highScoreArray.length; i++) {
 
         gameArea.insertAdjacentHTML('beforeend', "<p>" + highScoreArray[i] + ": " + userArray[i] + "</p>");
-        questionRightOrWrong.innerHTML = '<button id="goBack"><| Go Back</button>';
+        questionRightOrWrong.innerHTML = '<button id="goBack">Go Back</button>';
         var goBack = document.getElementById("goBack");
         goBack.addEventListener("click", backtoStart);
     };
@@ -129,6 +131,7 @@ function writeQuestions() {
 
 function rightOrWrong() {
     var checkSelection = this.textContent;
+    console.log(checkSelection);
 
     // alert(checkSelection);
 
