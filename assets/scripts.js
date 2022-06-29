@@ -19,6 +19,19 @@ var theQuestion = 1;
 var startGame = document.getElementById("startGame");
 startGame.addEventListener("click", startGameEXE);
 
+function resetNumbers() {
+    score = 0;
+    theQuestion = 1;
+    collectiveScore = 0;
+}
+
+function rewriteLanding() {
+    questionRightOrWrongArea.innerHTML = "";
+    gameArea.innerHTML = "<h1>Coding Quiz Challenge</h1><p>Try to answer the following code-related questions within the time limit.<br>Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p><br><button id='startGame1'>Start Game</button>";
+    var startGame1 = document.getElementById("startGame1");
+    startGame1.addEventListener("click", startGameEXE);
+}
+
 
 
 // LOCAL STORAGE -------------------
@@ -67,28 +80,22 @@ var question4 = {
 
 // Go back to landing page
 function backtoStart() {
-    timerNumber = 0;
-    score = 0;
-    questionRightOrWrongArea.innerHTML = "";
-    gameArea.innerHTML = "<h1>Coding Quiz Challenge</h1><p>Try to answer the following code-related questions within the time limit.<br>Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p><br><button id='startGame1'>Start Game</button>";
-    var startGame1 = document.getElementById("startGame1");
-    startGame1.addEventListener("click", startGameEXE);
+    resetNumbers();
+    rewriteLanding();
 }
 
 // click event handler for high scores
 function writeHighScores() {
     gameArea.innerHTML = '';
-    timerNumber = 30;
-    theQuestion = 1;
-    score = 0;
+    resetNumbers();
+    timerNumber = 0;
     // highScoreArray = highScoreArray.sort();
     console.log(highScoreArray);
     for (let i = 0; i < highScoreArray.length; i++) {
 
         gameArea.insertAdjacentHTML('beforeend', "<p>" + highScoreArray[i] + ": " + userArray[i] + "</p>");
-        questionRightOrWrong.innerHTML = '<button id="goBack">Go Back</button>';
-
     };
+    questionRightOrWrong.innerHTML = '<button id="goBack">Go Back</button>';
     // alert("game");
     var goBack = document.getElementById("goBack");
     goBack.addEventListener("click", backtoStart);
@@ -142,14 +149,14 @@ function rightOrWrong() {
         if (backgroundTimerReduced == 0) {
             // alert("times up");
             stopBackgroundEffectTimer();
-
-            questionRightOrWrongArea.style.backgroundColor = "white"
-            questionRightOrWrongArea.innerHTML = collectiveScore;;
+            questionRightOrWrongArea.style.backgroundColor = "";
+            questionRightOrWrongArea.innerHTML = collectiveScore;
             backgroundTimerReduced = 2;
             if (newNumber > 0) {
                 writeQuestions();
             } else {
-
+                questionRightOrWrongArea.style.backgroundColor = "";
+                questionRightOrWrongArea.innerHTML = "Final Score: " + collectiveScore;
             }
         }
     }
@@ -176,7 +183,7 @@ function rightOrWrong() {
 
         questionRightOrWrongArea.style.backgroundColor = "red";
         timerNumber -= 20;
-        collectiveScore -= 5;
+        // collectiveScore -= 5;
         console.log("SCORE: " + collectiveScore);
 
         rightWrongBackgroundInterval();
@@ -187,6 +194,7 @@ function rightOrWrong() {
 function startGameEXE() {
     // alert("start game");
     score = 0;
+    collectiveScore = 0;
     // RESETS
     timerNumber = 35;
 
@@ -194,17 +202,22 @@ function startGameEXE() {
     writeQuestions();
 
     const myInterval = setInterval(intervalQuestionTimer, 1000);
-
     // Timer Logic ---------------------------------
     function intervalQuestionTimer() {
 
         timerNumber--;
         newNumber = timerNumber;
+        if (timerNumber < -1) {
+            timerNumber = 1;
+        }
         // console.log(timerNumber);
         // console.log(newNumber);
         // ✅ Change (replace) the text of the element
         countdown.innerHTML = "Time|" + newNumber;
-        if (newNumber < 0) {
+        if (timerNumber == 1) {
+            questionRightOrWrongArea.style.background = "none";
+            questionRightOrWrongArea.innerHTML = "Final Score: " + collectiveScore;
+
             // console.log("NUMBER: " + timerNumber);
             stopTimer();
             // gameArea.innerHTML = '';
@@ -218,7 +231,11 @@ function startGameEXE() {
     };
     // End Timer Logic------------------------------
 
+
 };
+
+
+
 
 //get current user array
 var userArray = JSON.parse(localStorage.getItem('usersArray'));
@@ -230,6 +247,7 @@ var highScoreArray = JSON.parse(localStorage.getItem('highScoreArray'));
 // Write new high score to local storage
 function newHighScore() {
     if (collectiveScore > highScoreArray[0]) {
+        timerNumber = 0;
         // alert("new high score");
         // Add into high score array index 0
         highScoreArray.unshift(collectiveScore);
@@ -243,8 +261,6 @@ function newHighScore() {
         console.log(collectiveScore);
         console.log(highScoreArray);
 
-
-
         // Set local stored scores and users
         localStorage.setItem('highScoreArray', JSON.stringify(highScoreArray));
         localStorage.setItem('usersArray', JSON.stringify(userArray));
@@ -253,6 +269,7 @@ function newHighScore() {
         writeNewHighScoreName();
         score = 0;
     } else if (collectiveScore > highScoreArray[1]) {
+        timerNumber = 0;
         // alert("new high score");
 
         highScoreArray[2] = highScoreArray[1];
@@ -272,6 +289,7 @@ function newHighScore() {
 
         score = 0;
     } else if (collectiveScore > highScoreArray[2]) {
+        timerNumber = 0;
         // alert("new high score");
         highScoreArray.pop();
         highScoreArray[2] = collectiveScore;
@@ -291,8 +309,9 @@ function newHighScore() {
 
         score = 0;
     } else {
+        timerNumber = 0;
         backtoStart();
-
+        score = 0;
     }
 }
 

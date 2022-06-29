@@ -3,7 +3,7 @@
 /* NATIVE ELEMENT STYLES */
 :root {
     --mainBGColor: #DEDCDB;
-    --altButtonColor: rgb(34, 0, 255);
+    --altButtonColor: rgba(0, 51, 255, 0.845);
     --timerAndScoreFont: 'Press Start 2P', cursive;
     --mainTextFont: 'Roboto', sans-serif;
 }
@@ -13,29 +13,42 @@ body {
     margin: 0px;
     height: 100%;
     overflow: hidden;
+    color: powderblue;
     font-family: var(--mainTextFont);
-    background-color: var(--mainBGColor);
+
 }
 
 button {
     margin: 0 25%;
     margin-bottom: 10px;
-    background-color: var(--altButtonColor);
+    opacity: 1;
+    background-color: rgba(6, 24, 130);
+    border: none;
+    color: powderblue;
+    box-shadow: 4px 4px 7px rgb(90, 87, 236), 10px 10px 8px rgb(25, 85, 224), 15px 15px 8px rgb(66, 0, 128), 5px 5px 8px rgb(90, 87, 236) inset, 10px 10px 8px rgb(25, 85, 224) inset, 15px 15px 8px rgb(66, 0, 128) inset;
+
 
 }
 
 button:hover {
-    background-color: rgb(236, 100, 75);
-    opacity: 6;
-    box-shadow: 5px 5px 8px rgb(90, 87, 236), 10px 10px 8px rgb(25, 85, 224), 15px 15px 8px rgb(66, 0, 128);
-    /* color: rgb(236, 100, 75); */
-    animation: startButtonColors 20s infinite;
+    background-color: rgba(6, 24, 130);
+    opacity: .8;
+    box-shadow: 5px 5px 8px rgb(90, 87, 236) inset, 10px 10px 8px rgb(25, 85, 224) inset, 15px 15px 8px rgb(66, 0, 128) inset, 4px 4px 7px rgb(90, 87, 236), 10px 10px 8px rgb(25, 85, 224), 15px 15px 8px rgb(66, 0, 128);
+
+    transform: translate(4px);
 }
 
-.button:active {
-    background-color: #3e8e41;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
+button:active {
+    transform: translateX(8px);
+    box-shadow: 4px 4px 7px rgb(90, 87, 236), 10px 10px 8px rgb(25, 85, 224), 15px 15px 8px rgb(66, 0, 128), 5px 5px 8px rgb(90, 87, 236) inset, 10px 10px 8px rgb(25, 85, 224) inset, 15px 15px 8px rgb(66, 0, 128) inset;
+
+}
+
+button:focus {
+    transform: translateX(8px);
+    transform: translateX(8px);
+    box-shadow: 5px 5px 8px rgb(90, 87, 236) inset, 10px 10px 8px rgb(25, 85, 224) inset, 15px 15px 8px rgb(66, 0, 128) inset, 4px 4px 7px rgb(90, 87, 236), 10px 10px 8px rgb(25, 85, 224), 15px 15px 8px rgb(66, 0, 128);
+
 }
 
 /* button:nth-child(even) {
@@ -46,13 +59,14 @@ main {
     margin: 0;
     padding: 0;
     height: 100%;
+
 }
 
 /* NAVBAR STYLES */
 nav {
     width: 100%;
     height: 5%;
-    border-bottom: 1px solid black;
+    /* border-bottom: 1px solid black; */
 }
 
 .navbar {
@@ -73,9 +87,14 @@ nav {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--mainBGColor);
-    height: 100%;
+    background: #0f0c29;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     width: 100vw;
+    height: 100vh;
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -103,13 +122,13 @@ nav {
     margin: 0;
     padding: 0;
     text-align: center;
-    background-color: var(--mainBGColor);
+    background-color: none;
     transition: background-color 1s linear;
 }
 
 #questionRightOrWrong {
     color: rgb(236, 100, 75);
-    /* animation: startButtonColors 20s infinite; */
+    animation: startButtonColors 20s infinite;
     font-weight: 900;
     font-family: var(--timerAndScoreFont);
 }
@@ -118,42 +137,42 @@ nav {
 
     from,
     to {
-        background-color: rgb(236, 100, 75);
+        color: rgb(236, 100, 75);
     }
 
     10% {
-        background-color: rgb(219, 10, 91);
+        color: rgb(219, 10, 91);
     }
 
     20% {
-        background-color: rgb(174, 168, 211);
+        color: rgb(174, 168, 211);
     }
 
     30% {
-        background-color: rgb(89, 171, 227);
+        color: rgb(89, 171, 227);
     }
 
     40% {
-        background-color: rgb(37, 116, 169);
+        color: rgb(37, 116, 169);
     }
 
     50% {
-        background-color: rgb(3, 201, 169);
+        color: rgb(3, 201, 169);
     }
 
     60% {
-        background-color: rgb(22, 160, 133);
+        color: rgb(22, 160, 133);
     }
 
     70% {
-        background-color: rgb(233, 212, 96);
+        color: rgb(233, 212, 96);
     }
 
     80% {
-        background-color: rgb(243, 156, 18);
+        color: rgb(243, 156, 18);
     }
 
     90% {
-        background-color: rgb(236, 240, 241);
+        color: rgb(236, 240, 241);
     }
 }
