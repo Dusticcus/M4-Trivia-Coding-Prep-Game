@@ -250,7 +250,7 @@ function newHighScore() {
 
         gameArea.innerHTML = "NEW HIGH SCORE!<br>" + "ADD YOUR NAME!" + "<form><input id='highScoreName'></form><br>" + "<button id='addName'>Add Name</button>";
         writeNewHighScoreName();
-
+        score = 0;
     } else if (collectiveScore > highScoreArray[1]) {
         // alert("new high score");
 
@@ -269,7 +269,7 @@ function newHighScore() {
         gameArea.innerHTML = "NEW HIGH SCORE!<br>" + "ADD YOUR NAME!" + "<form><input id='highScoreName'></form><br>" + "<button id='addName'>Add Name</button>";
         writeNewHighScoreName();
 
-
+        score = 0;
     } else if (collectiveScore > highScoreArray[2]) {
         // alert("new high score");
         highScoreArray.pop();
@@ -288,7 +288,7 @@ function newHighScore() {
         gameArea.innerHTML = "NEW HIGH SCORE!<br>" + "ADD YOUR NAME!" + "<form><input id='highScoreName'></form><br>" + "<button id='addName'>Add Name</button>";
         writeNewHighScoreName();
 
-
+        score = 0;
     } else {
         backtoStart();
 
