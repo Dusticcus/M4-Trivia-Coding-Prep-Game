@@ -1,4 +1,4 @@
-var timerNumber = 5;
+var timerNumber = 30;
 var newNumber;
 var countdown = document.getElementById("countdown");
 
@@ -87,10 +87,11 @@ function writeHighScores() {
 
         gameArea.insertAdjacentHTML('beforeend', "<p>" + highScoreArray[i] + ": " + userArray[i] + "</p>");
         questionRightOrWrong.innerHTML = '<button id="goBack">Go Back</button>';
-        var goBack = document.getElementById("goBack");
-        goBack.addEventListener("click", backtoStart);
+
     };
     // alert("game");
+    var goBack = document.getElementById("goBack");
+    goBack.addEventListener("click", backtoStart);
 }
 
 var viewHighScores = document.getElementById("viewHighScores");
@@ -164,7 +165,7 @@ function rightOrWrong() {
         questionRightOrWrongArea.style.backgroundColor = "green";
         console.log("SCORE: " + collectiveScore);
         // console.log(theQuestion);
-        timerNumber += 5;
+        // timerNumber += 5;
         collectiveScore += 10;
         rightWrongBackgroundInterval();
 
@@ -185,9 +186,9 @@ function rightOrWrong() {
 
 function startGameEXE() {
     // alert("start game");
-
+    score = 0;
     // RESETS
-    timerNumber = 90;
+    timerNumber = 35;
 
     // Clear gameArea and push first question to DOM
     writeQuestions();
@@ -199,12 +200,12 @@ function startGameEXE() {
 
         timerNumber--;
         newNumber = timerNumber;
-        console.log(timerNumber);
-        console.log(newNumber);
+        // console.log(timerNumber);
+        // console.log(newNumber);
         // ✅ Change (replace) the text of the element
         countdown.innerHTML = "Time|" + newNumber;
         if (newNumber < 0) {
-            console.log("NUMBER: " + timerNumber);
+            // console.log("NUMBER: " + timerNumber);
             stopTimer();
             // gameArea.innerHTML = '';
             newHighScore();

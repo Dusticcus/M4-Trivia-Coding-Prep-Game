@@ -2,8 +2,8 @@
 
 /* NATIVE ELEMENT STYLES */
 :root {
-    --mainBGColor: white;
-    --altButtonColor: lightskyblue;
+    --mainBGColor: #DEDCDB;
+    --altButtonColor: rgb(34, 0, 255);
     --timerAndScoreFont: 'Press Start 2P', cursive;
     --mainTextFont: 'Roboto', sans-serif;
 }
@@ -14,15 +14,33 @@ body {
     height: 100%;
     overflow: hidden;
     font-family: var(--mainTextFont);
+    background-color: var(--mainBGColor);
 }
 
 button {
     margin: 0 25%;
+    margin-bottom: 10px;
+    background-color: var(--altButtonColor);
+
 }
 
-button:nth-child(even) {
-    background-color: var(--altButtonColor);
+button:hover {
+    background-color: rgb(236, 100, 75);
+    opacity: 6;
+    box-shadow: 5px 5px 8px rgb(90, 87, 236), 10px 10px 8px rgb(25, 85, 224), 15px 15px 8px rgb(66, 0, 128);
+    /* color: rgb(236, 100, 75); */
+    animation: startButtonColors 20s infinite;
 }
+
+.button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+/* button:nth-child(even) {
+    background-color: var(--altButtonColor);
+} */
 
 main {
     margin: 0;
@@ -63,7 +81,9 @@ nav {
     overflow: hidden;
 }
 
-#countdown, #questionRightOrWrong, #viewHighScores {
+#countdown,
+#questionRightOrWrong,
+#viewHighScores {
     font-family: var(--timerAndScoreFont);
 }
 
@@ -86,22 +106,54 @@ nav {
     background-color: var(--mainBGColor);
     transition: background-color 1s linear;
 }
-#startGame {
-    color: rgb(236,100,75);
-    animation: startButtonColors 20s infinite;
+
+#questionRightOrWrong {
+    color: rgb(236, 100, 75);
+    /* animation: startButtonColors 20s infinite; */
     font-weight: 900;
     font-family: var(--timerAndScoreFont);
 }
 
 @keyframes startButtonColors {
-    from, to { color: rgb(236,100,75); }
-    10%      { color: rgb(219,10,91); }
-    20%      { color: rgb(174,168,211); }
-    30%      { color: rgb(89,171,227); }
-    40%      { color: rgb(37,116,169); }
-    50%      { color: rgb(3,201,169); }
-    60%      { color: rgb(22,160,133); }
-    70%      { color: rgb(233,212,96); }
-    80%      { color: rgb(243,156,18); }
-    90%      { color: rgb(236,240,241); }
+
+    from,
+    to {
+        background-color: rgb(236, 100, 75);
+    }
+
+    10% {
+        background-color: rgb(219, 10, 91);
+    }
+
+    20% {
+        background-color: rgb(174, 168, 211);
+    }
+
+    30% {
+        background-color: rgb(89, 171, 227);
+    }
+
+    40% {
+        background-color: rgb(37, 116, 169);
+    }
+
+    50% {
+        background-color: rgb(3, 201, 169);
+    }
+
+    60% {
+        background-color: rgb(22, 160, 133);
+    }
+
+    70% {
+        background-color: rgb(233, 212, 96);
+    }
+
+    80% {
+        background-color: rgb(243, 156, 18);
+    }
+
+    90% {
+        background-color: rgb(236, 240, 241);
+    }
 }
