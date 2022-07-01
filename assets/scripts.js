@@ -59,15 +59,15 @@ var question1 = {
 }
 
 var question2 = {
-    question: "What gives you the right?",
-    answerOne: ["a", "b", "c", "d"],
-    correctAnswer: "b"
+    question: "In JavaScripthe built in method to make a URL request is:",
+    answerOne: ["ajax", "fetch", "api", "get"],
+    correctAnswer: "fetch"
 }
 
 var question3 = {
-    question: "How dare you?",
-    answerOne: ["a", "b", "c", "d"],
-    correctAnswer: "c"
+    question: "Data added to an HTML element that isn't read by the DOM is a data-*?",
+    answerOne: ["attribute", "variable", "extension", "function"],
+    correctAnswer: "attribute"
 }
 
 var question4 = {
