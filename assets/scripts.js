@@ -22,7 +22,6 @@ startGame.addEventListener("click", startGameEXE);
 function resetNumbers() {
     score = 0;
     theQuestion = 1;
-    collectiveScore = 0;
 }
 
 function rewriteLanding() {
@@ -92,7 +91,6 @@ function writeHighScores() {
     // highScoreArray = highScoreArray.sort();
     console.log(highScoreArray);
     for (let i = 0; i < highScoreArray.length; i++) {
-
         gameArea.insertAdjacentHTML('beforeend', "<p>" + highScoreArray[i] + ": " + userArray[i] + "</p>");
     };
     questionRightOrWrong.innerHTML = '<button id="goBack">Go Back</button>';
@@ -193,11 +191,11 @@ function rightOrWrong() {
 
 function startGameEXE() {
     // alert("start game");
-    score = 0;
-    collectiveScore = 0;
+
     // RESETS
     timerNumber = 35;
-
+    score = 0;
+    collectiveScore = 0;
     // Clear gameArea and push first question to DOM
     writeQuestions();
 
@@ -211,9 +209,9 @@ function startGameEXE() {
             timerNumber = 1;
         }
         // console.log(timerNumber);
-        // console.log(newNumber);
+
         // ✅ Change (replace) the text of the element
-        countdown.innerHTML = "Time|" + newNumber;
+        countdown.innerHTML = "Time:" + timerNumber;
         if (timerNumber == 1) {
             questionRightOrWrongArea.style.background = "none";
             questionRightOrWrongArea.innerHTML = "Final Score: " + collectiveScore;
@@ -265,7 +263,7 @@ function newHighScore() {
         localStorage.setItem('highScoreArray', JSON.stringify(highScoreArray));
         localStorage.setItem('usersArray', JSON.stringify(userArray));
 
-        gameArea.innerHTML = "NEW HIGH SCORE!<br>" + "ADD YOUR NAME!" + "<form><input id='highScoreName'></form><br>" + "<button id='addName'>Add Name</button>";
+        gameArea.innerHTML = "NEW HIGH SCORE!<br>" + "ADD YOUR NAME!" + "<form><input type='text' id='highScoreName' onkeydown='return' (event.keyCode!=13);'></form><br>" + "<button id='addName'>Add Name</button>";
         writeNewHighScoreName();
         score = 0;
     } else if (collectiveScore > highScoreArray[1]) {
@@ -284,7 +282,7 @@ function newHighScore() {
         localStorage.setItem('highScoreArray', JSON.stringify(highScoreArray));
         localStorage.setItem('usersArray', JSON.stringify(userArray));
 
-        gameArea.innerHTML = "NEW HIGH SCORE!<br>" + "ADD YOUR NAME!" + "<form><input id='highScoreName'></form><br>" + "<button id='addName'>Add Name</button>";
+        gameArea.innerHTML = "NEW HIGH SCORE!<br>" + "ADD YOUR NAME!" + "<form><input type='text' id='highScoreName' onkeydown='return' (event.keyCode!=13);'></form><br>" + "<button id='addName'>Add Name</button>";
         writeNewHighScoreName();
 
         score = 0;
@@ -304,7 +302,7 @@ function newHighScore() {
         localStorage.setItem('highScoreArray', JSON.stringify(highScoreArray));
         localStorage.setItem('usersArray', JSON.stringify(userArray));
 
-        gameArea.innerHTML = "NEW HIGH SCORE!<br>" + "ADD YOUR NAME!" + "<form><input id='highScoreName'></form><br>" + "<button id='addName'>Add Name</button>";
+        gameArea.innerHTML = "NEW HIGH SCORE!<br>" + "ADD YOUR NAME!" + "<form><input type='text' id='highScoreName' onkeydown='return' (event.keyCode!=13);'></form><br>" + "<button id='addName'>Add Name</button>";
         writeNewHighScoreName();
 
         score = 0;
@@ -316,6 +314,14 @@ function newHighScore() {
 }
 
 function writeNewHighScoreName() {
+    var highScoreInput = document.getElementById("highScoreName");
+    highScoreInput.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            alert("NO.");
+            event.preventDefault();
+            return false;
+        }
+    });
 
     addName.addEventListener("click", function () {
         var newName = document.getElementById("highScoreName").value;
@@ -336,7 +342,9 @@ function writeNewHighScoreName() {
 
         writeHighScores();
     });
+
 }
+
 
 
 

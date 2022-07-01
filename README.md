@@ -24,7 +24,7 @@ Project: Code a Software Developer specific trivia game that utilizes a timer fu
 - **Answer the question by clicking 1 of the 4 buttons**
     - Right Answers will add 10 Points to your score
         -   <img src="./assets/images/readMeImages/questionRight.png" style="width:500px" />
-    - Wrong answers will reduce your score by 5 and your remaining time by 20
+    - Wrong answers will reduce your remaining time by 20
         -   <img src="./assets/images/readMeImages/questionWrong.png" style="width:500px" />
     - A new high score will ask for your name to be added to the scoreboard
         - <img src=".\assets\images\readMeImages\newHighScore.png" style="width: 500px"/>
