@@ -1,4 +1,4 @@
-var timerNumber = 30;
+var timerNumber = 35;
 var newNumber;
 var countdown = document.getElementById("countdown");
 
@@ -21,6 +21,7 @@ startGame.addEventListener("click", startGameEXE);
 
 function resetNumbers() {
     score = 0;
+    collectiveScore = 0;
     theQuestion = 1;
 }
 
@@ -71,9 +72,45 @@ var question3 = {
 }
 
 var question4 = {
-    question: "Do you have a passion for HR?",
-    answerOne: ["a", "b", "c", "d"],
-    correctAnswer: "d"
+    question: "How would you access the first index of an array?",
+    answerOne: [":0", "{0}", "[0]", "0"],
+    correctAnswer: "[0]"
+}
+
+var question5 = {
+    question: "The built in browser method to show the user a message is called with:",
+    answerOne: ["modal()", "console.log()", "prompt()", "alert()"],
+    correctAnswer: "alert()"
+}
+
+var question6 = {
+    question: "The built in browser method to gather user input is called with:",
+    answerOne: ["input()", "console.log()", "prompt()", "alert()"],
+    correctAnswer: "prompt()"
+}
+
+var question7 = {
+    question: "Which of these declares a variable?",
+    answerOne: ["create", "dec", "new variable", "var"],
+    correctAnswer: "var"
+}
+
+var question8 = {
+    question: "Curly Braces/{} around data would imply it is what type?",
+    answerOne: ["object", "variable", "array", "htmlCollection"],
+    correctAnswer: "object"
+}
+
+var question9 = {
+    question: "Text in a variable is know as _ data.",
+    answerOne: ["alpha", "string", "text", "readable"],
+    correctAnswer: "string"
+}
+
+var question10 = {
+    question: "What is the file extension for a javascript file?",
+    answerOne: [".script", ".javascript", ".javaScript", ".js"],
+    correctAnswer: ".js"
 }
 // ---------------------
 
@@ -86,8 +123,10 @@ function backtoStart() {
 // click event handler for high scores
 function writeHighScores() {
     gameArea.innerHTML = '';
+
     resetNumbers();
-    timerNumber = 0;
+    timerNumber = 155;
+
     // highScoreArray = highScoreArray.sort();
     console.log(highScoreArray);
     for (let i = 0; i < highScoreArray.length; i++) {
@@ -97,6 +136,8 @@ function writeHighScores() {
     // alert("game");
     var goBack = document.getElementById("goBack");
     goBack.addEventListener("click", backtoStart);
+
+
 }
 
 var viewHighScores = document.getElementById("viewHighScores");
@@ -116,6 +157,24 @@ function writeQuestions() {
         console.log("Q# : 3");
     } else if (theQuestion == question3) {
         theQuestion = question4;
+        console.log("Q# : 4");
+    } else if (theQuestion == question4) {
+        theQuestion = question5;
+        console.log("Q# : 5");
+    } else if (theQuestion == question5) {
+        theQuestion = question6;
+        console.log("Q# : 4");
+    } else if (theQuestion == question6) {
+        theQuestion = question7;
+        console.log("Q# : 4");
+    } else if (theQuestion == question7) {
+        theQuestion = question8;
+        console.log("Q# : 4");
+    } else if (theQuestion == question8) {
+        theQuestion = question9;
+        console.log("Q# : 4");
+    } else if (theQuestion == question9) {
+        theQuestion = question10;
         console.log("Q# : 4");
     } else {
         theQuestion = question1;
@@ -190,8 +249,6 @@ function rightOrWrong() {
 }
 
 function startGameEXE() {
-    // alert("start game");
-
     // RESETS
     timerNumber = 35;
     score = 0;
@@ -205,14 +262,17 @@ function startGameEXE() {
 
         timerNumber--;
         newNumber = timerNumber;
-        if (timerNumber < -1) {
-            timerNumber = 1;
-        }
-        // console.log(timerNumber);
 
         // ✅ Change (replace) the text of the element
         countdown.innerHTML = "Time:" + timerNumber;
-        if (timerNumber == 1) {
+        if (timerNumber > 150) {
+            stopTimer();
+            countdown.innerHTML = "Time:" + "Game Ended";
+        }
+        // console.log(timerNumber);
+
+
+        if (timerNumber < 0) {
             questionRightOrWrongArea.style.background = "none";
             questionRightOrWrongArea.innerHTML = "Final Score: " + collectiveScore;
 
@@ -226,6 +286,7 @@ function startGameEXE() {
     }
     function stopTimer() {
         clearInterval(myInterval);
+
     };
     // End Timer Logic------------------------------
 
@@ -245,7 +306,6 @@ var highScoreArray = JSON.parse(localStorage.getItem('highScoreArray'));
 // Write new high score to local storage
 function newHighScore() {
     if (collectiveScore > highScoreArray[0]) {
-        timerNumber = 0;
         // alert("new high score");
         // Add into high score array index 0
         highScoreArray.unshift(collectiveScore);
@@ -265,9 +325,9 @@ function newHighScore() {
 
         gameArea.innerHTML = "NEW HIGH SCORE!<br>" + "ADD YOUR NAME!" + "<form><input type='text' id='highScoreName' onkeydown='return' (event.keyCode!=13);'></form><br>" + "<button id='addName'>Add Name</button>";
         writeNewHighScoreName();
-        score = 0;
+        resetNumbers();
     } else if (collectiveScore > highScoreArray[1]) {
-        timerNumber = 0;
+
         // alert("new high score");
 
         highScoreArray[2] = highScoreArray[1];
@@ -287,7 +347,7 @@ function newHighScore() {
 
         score = 0;
     } else if (collectiveScore > highScoreArray[2]) {
-        timerNumber = 0;
+
         // alert("new high score");
         highScoreArray.pop();
         highScoreArray[2] = collectiveScore;
@@ -304,12 +364,9 @@ function newHighScore() {
 
         gameArea.innerHTML = "NEW HIGH SCORE!<br>" + "ADD YOUR NAME!" + "<form><input type='text' id='highScoreName' onkeydown='return' (event.keyCode!=13);'></form><br>" + "<button id='addName'>Add Name</button>";
         writeNewHighScoreName();
-
-        score = 0;
+        resetNumbers();
     } else {
-        timerNumber = 0;
         backtoStart();
-        score = 0;
     }
 }
 
@@ -317,7 +374,7 @@ function writeNewHighScoreName() {
     var highScoreInput = document.getElementById("highScoreName");
     highScoreInput.addEventListener("keypress", function (event) {
         if (event.key === "Enter") {
-            alert("NO.");
+
             event.preventDefault();
             return false;
         }
